@@ -10,6 +10,8 @@
         @csrf
         <div class='row'>
             <div class='col-12'>
+
+                <!-- 显示验证错误信息 -->
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -18,10 +20,11 @@
                         @endforeach
                     </ul>
                 </div>
+
                 @endif
                 <!-- 富文本输入框 -->
                 <div class="form-group">
-                    <textarea id='content' name='content' class="form-control" rows='4'></textarea>
+                    <textarea id='content' name='content' class="form-control" rows='2' placeholder="请输入留言内容"></textarea>
                     <script>
                         var editor = new Simditor({
                             textarea: $('#content')
@@ -31,7 +34,7 @@
             </div>
             <div class='col-3'>
                 <div class="form-group">
-                    <input name='username' class='form-control' type='text' />
+                    <input name='username' class='form-control' type='text' placeholder="请输入留言人" />
                 </div>
             </div>
             <div class='col-9 d-flex'>
@@ -43,15 +46,17 @@
     </form>
     <div class='row'>
         <div class='col-12'>
-            <div class='border rounded p-2 mb-2'>
-                <div class='text-primary'>我是留言人</div>
-                <div>我是留言内容</div>
-            </div>
+            @foreach($msgs as $msg)
+                <div class='border rounded p-2 mb-2'>
+                    <div class='text-primary'>{{$msg->username}}</div>
+                    <div>{!! $msg->content !!}</div>
+                </div>
+            @endforeach
         </div>
     </div>
     <div class='row'>
         <div class='col-12'>
-            分页
+            {{ $msgs->links() }}
         </div>
     </div>
 </div>
