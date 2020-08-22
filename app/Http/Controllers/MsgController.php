@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Gbook;
+use App\Kl\Kl;
 use App\Models\Msg;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MsgController extends Controller
 {
     //
     public function index(Msg $msg){
+
+        $msgaa = DB::table('msgs')->where('id' ,'>','2')->get();
+
+        dump($msgaa);
 
         $msgs = $msg->orderBy('id','desc')->paginate(10);;
 
