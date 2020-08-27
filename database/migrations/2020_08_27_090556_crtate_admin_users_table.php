@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMsgstable extends Migration
+class CrtateAdminUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateMsgstable extends Migration
      */
     public function up()
     {
-        Schema::create('msgs', function (Blueprint $table) {
+        Schema::create('admin_users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('username',50);
-            $table->string('content',255);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateMsgstable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('msgs');
+        Schema::dropIfExists('admin_users');
     }
 }
