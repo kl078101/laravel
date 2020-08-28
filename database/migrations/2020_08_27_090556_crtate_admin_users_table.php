@@ -15,6 +15,10 @@ class CrtateAdminUsersTable extends Migration
     {
         Schema::create('admin_users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('username',50)->unique();
+            $table->string('password',150);
+            $table->tinyInteger('state')->commit('负责控制账号的可用性');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
