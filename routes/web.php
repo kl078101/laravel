@@ -25,6 +25,14 @@ Route::prefix('admin')->group(function () {
     //受保护的路由，未登陆不能访问
     Route::middleware('adminlogincheck')->group(function () {
         Route::get('index', 'IndexController@index')->name('admin.index');
+
+        Route::prefix('adminuser')->group(function () {
+            Route::get('/', 'AdminUserController@index')->name('admin.adminuser');
+            Route::get('add/{adminuser?}', 'AdminUserController@add')->name('admin.adminuser.add');
+            Route::post('add/{adminuser?}', 'AdminUserController@save')->name('admin.adminuser.add');
+            Route::get('remove/{adminuser?}', 'AdminUserController@remove')->name('admin.adminuser.remove');
+            Route::get('state/{adminuser?}', 'AdminUserController@state')->name('admin.adminuser.state');
+        });
     });
 
 });
