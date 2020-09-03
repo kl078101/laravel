@@ -39,7 +39,7 @@ class AdminUserController extends Controller
 
         //获得提交数据，加入状态
         $data = $request->validated();
-        $data['state'] = AdminUser::NORMAL;
+        $data['state'] = setting('default_state');
 
         //根据 ID 值判断是添加还是修改
         if($adminuser->id){
